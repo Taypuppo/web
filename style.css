@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    height: 100vh;
+    background: aqua;
+    /* posicionamento flex */
+    display: flex;
+    /* direção padrão = row*/
+    flex-direction: row; /* row ou column*/
+    flex-wrap: wrap;
+    
+    /* alinhamento no sentido da linha (row) - horizontal*/
+    /*center, space-around , space-between, space-evenly, */
+    justify-content: space-around;
+    /* alinhamento vertical */
+    /* start, center, end */
+    align-items: center;
+
+
+}
+
+.filho {
+    background: green;
+    width: 40%;
+    height: 40%;
+    border: 1px solid black;
+    font-size: 10px;
+
+}
