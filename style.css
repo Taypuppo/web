@@ -1,0 +1,163 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+.header {
+    background-color: #62997a;
+    padding-inline: 16px;
+    /* padding esquerdo e direito */
+}
+
+/*
+  VGA     = 640 x 480px
+  HD      = 1280 x 720px
+  FULL HD = 1920 x 1080px
+*/
+
+.nav {
+    height: 70px;
+    max-width: 1280px;
+    /*HD*/
+    margin-inline: auto;
+    /* margin automática a esquerda e direita*/
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-softgraf {
+    width: 145px;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    gap: 32px;
+}
+
+.nav-list a {
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    color: #000000;
+    /* aumenta a area vertical do clique*/
+    padding-block: 16px;
+}
+
+.nav-list li a:hover {
+    color: blue;
+}
+
+.conteudo {
+    /* 100% da altura da tela - altura  da barra de navegação */
+    height: calc(100vh - 70px);
+
+    background: center /cover no-repeat url(bg.png);
+}
+
+/* configuração dp botão hamburguer (sandwich*/
+
+.hamburguer {
+    display: none;
+    background: none;
+    border: none;
+    border-top: 3px solid #000000;
+    cursor: pointer;
+}
+
+.hamburguer::before,
+.hamburguer::after {
+    content: " ";
+    display: block;
+    background: #000000;
+    width: 30px;
+    height: 3px;
+    margin-top: 5px;
+    transition: 0.2s;
+
+    position: relative;
+}
+
+@media (max-width: 576px) {
+    /* tamanho small (sm) do bootstrap*/
+
+
+    .hamburguer {
+        display: block;
+        z-index: 1;
+    }
+
+    .nav-list {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        /* reposiciona os menus em coluna*/
+        flex-direction: column;
+        /*centraliza verticalmente*/
+        justify-content: space-around;
+        /*centraliza horizontalmente*/
+        align-items: center;
+        /*remove espaçamento entre os menus*/
+        gap: 0;
+
+        background: #62997a;
+        /*                raio      x    y */
+        clip-path: circle(100px at 90% -15%);
+        transition: 1s ease-out;
+
+    }
+
+    .nav-list a {
+        font-size: 24px;
+        /* esconde os links do menu antes do circulo ser expandido */
+        opacity: 0;
+        transition: 1s ease-out;
+    }
+
+    .nav-list li:nth-child(1) a {
+        transition: 0.5s 0.2s;
+    }
+
+    .nav-list li:nth-child(2) a {
+        transition: 0.5s 0.4s;
+    }
+
+    .nav-list li:nth-child(3) a {
+        transition: 0.5s 0.6s;
+    }
+
+    /* Estilos ativos (active) */
+
+    .nav.active .nav-list {
+        clip-path: circle(1500px at 90% -15%);
+    }
+
+    .nav.active .nav-list a {
+        opacity: 1;
+    }
+
+    .nav.active .hamburguer {
+        /* esconde a borda do top do botão*/
+        border-top-color: transparent;
+        position: fixed;
+        top: 26px;
+        right: 16px;
+    }
+
+    /* rotaciona a linha intermediaria do botão */
+    .nav.active .hamburguer::before {
+        transform: rotate(135deg);
+    }
+
+    /* rotaciona a linha inferior do botão */
+    .nav.active .hamburguer::after {
+        transform: rotate(-135deg);
+        /* reposiciona a linha para formar o x */
+        top: -7px;     /* sobre 7px */
+
+    }
+}
